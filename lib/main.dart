@@ -1,4 +1,4 @@
-import 'package:contacts/providers/contacts_provider.dart';
+import 'package:contacts/providers/contacts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ContactsProvider(),
+      create: (context) => ContactsController(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: ContactsScreen(),

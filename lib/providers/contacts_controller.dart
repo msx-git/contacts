@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '/models/contact.dart';
 
-class ContactsProvider with ChangeNotifier {
+class ContactsController with ChangeNotifier {
   final _dbService = DbService();
   List<Contact> _list = [];
 
@@ -22,6 +22,16 @@ class ContactsProvider with ChangeNotifier {
 
   Future<void> deleteContact(int id) async {
     await _dbService.deleteContact(id);
+    notifyListeners();
+  }
+
+  Future<void> editContact({
+    required int id,
+    required String newTitle,
+    required String newPhone,
+  }) async {
+    await _dbService.editContact(
+        id: id, newTitle: newTitle, newPhone: newPhone);
     notifyListeners();
   }
 }

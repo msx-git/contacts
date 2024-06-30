@@ -27,7 +27,7 @@ class DbService {
     """);
   }
 
-  /// INITIALIZE DATABASE
+  /// INITIALIZE THE DATABASE
   Future<Database> _initDatabase() async {
     final String dbPath = await getDatabasesPath();
     final path = "$dbPath/localDatabase.db";
@@ -44,7 +44,7 @@ class DbService {
     }
   }
 
-  /// Method for getting contacts from Database
+  /// Method for getting contacts from the Database
   Future<List<Contact>> getContacts() async {
     final db = await database;
     final dbResponse = await db.rawQuery("SELECT * FROM $_tableName");
@@ -54,6 +54,7 @@ class DbService {
     return contacts;
   }
 
+  /// Method for adding a contact to the Database
   Future<void> addContact({
     required String title,
     required String phoneNumber,
@@ -71,13 +72,37 @@ class DbService {
     }
   }
 
+  /// Method for deleting a contact from the Database
   Future<void> deleteContact(int id) async {
     try {
       final db = await database;
       await db.delete(_tableName, where: "id == ?", whereArgs: [id]);
-    } catch (error) {
+    } catch (e) {
       if (kDebugMode) {
-        print('Error while deleting contact: $error');
+        print('Error while deleting a contact: $e');
+      }
+    }
+  }
+
+  /// Method for editing a contact from the Database
+  Future<void> editContact({
+    required int id,
+    required String newTitle,
+    required String newPhone,
+  }) async {
+    try {
+      final db = await database;
+      await db.update(
+          _tableName,
+          {
+            'title': newTitle,
+            'phoneNumber': newPhone,
+          },
+          where: 'id == ?',
+          whereArgs: [id]);
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error while editing a contact: $e');
       }
     }
   }
