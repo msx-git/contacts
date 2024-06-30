@@ -1,8 +1,8 @@
-import 'package:contacts/providers/contacts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/contact.dart';
+import '../../providers/contacts_controller.dart';
 
 class DeleteContactDialog extends StatelessWidget {
   const DeleteContactDialog({super.key, required this.contact});

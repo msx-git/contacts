@@ -1,8 +1,8 @@
-import 'package:contacts/views/widgets/delete_contact_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/contact.dart';
+import 'delete_contact_dialog.dart';
 import 'manage_contact_sheet.dart';
 
 class ContactItem extends StatelessWidget {
@@ -72,7 +72,6 @@ class ContactItem extends StatelessWidget {
                 context: context,
                 builder: (context) => DeleteContactDialog(contact: contact),
               );
-              // contactsController.deleteContact(contact.id);
             },
             icon: const Icon(
               CupertinoIcons.trash,
