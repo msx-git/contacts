@@ -26,7 +26,6 @@ class _ManageContactSheetState extends State<ManageContactSheet> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     titleController = TextEditingController(
       text: widget.contact == null ? "" : widget.contact!.title,
